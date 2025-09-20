@@ -1,0 +1,382 @@
+:root {
+  --primary-color: #5d5dff;
+  --secondary-color: #e0e0ff;
+  --background-color: #f0f4f8;
+  --text-color: #333;
+  --card-background: #ffffff;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --input-background: #fafafa;
+  --border-color: #ddd;
+
+  /* Colores para el valor acumulado */
+  --low-value-color: #800000; /* Guinda */
+  --mid-value-color: #e74c3c; /* Rojo */
+  --high-value-color: #2ecc71;
+  --premium-value-color: #3498db;
+  --golden-value-color: #f39c12;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  --background-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --card-background: #34495e;
+  --input-background: #4a6572;
+  --border-color: #5d7c8a;
+  --primary-color: #9b59b6;
+  --secondary-color: #bdc3c7;
+  --error-color: #e74c3c;
+  --success-color: #27ae60;
+  --low-value-color: #640101; /* Guinda oscuro */
+  --mid-value-color: #c0392b; /* Rojo oscuro */
+  --high-value-color: #2ecc71;
+  --premium-value-color: #3498db;
+  --golden-value-color: #f1c40f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+main {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.header-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  transition: color 0.3s ease;
+}
+
+.header-container p {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-top: 5px;
+  transition: color 0.3s ease;
+}
+
+.card {
+  background: var(--card-background);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+#json-input {
+  width: 100%;
+  height: 200px;
+  font-size: 0.85rem;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  resize: vertical;
+  font-family: monospace;
+  background-color: var(--input-background);
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  color: var(--text-color);
+}
+
+#json-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#trainer-name-1 {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+#trainer-name-1:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+#calculate-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(93, 93, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(93, 93, 255, 0.5);
+}
+
+#calculate-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(93, 93, 255, 0.3);
+}
+
+#calculate-btn[disabled] {
+  background: #aaa;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#button-text {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  transition: width 0.3s ease-out;
+}
+
+.message-box {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: slideIn 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.message-box.error {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.message-box.success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#results {
+  margin-top: 30px;
+}
+
+#results-table-container {
+  overflow-x: auto;
+  margin-bottom: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+th, td {
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s forwards;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--input-background);
+}
+
+tbody tr:hover {
+  background: #eef1f4;
+  transition: background 0.3s;
+}
+
+.dark-mode tbody tr:hover {
+  background: #4a6572;
+}
+
+.value-low { color: var(--low-value-color); }
+.value-mid { color: var(--mid-value-color); }
+.value-high { color: var(--high-value-color); }
+.value-premium { color: var(--premium-value-color); }
+.value-golden { color: var(--golden-value-color); font-weight: bold; }
+
+
+/* Resumen y récords */
+.total-points-summary, #records-container {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-color);
+  padding: 20px;
+  background: var(--input-background);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 0.8s forwards;
+}
+
+.total-points-summary strong {
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+#records-container h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.record-item {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+/* Animaciones generales */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-toggle-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform 0.3s, background 0.3s;
+  z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  background: rgba(0,0,0,0.05);
+}
+
+.theme-toggle-btn .icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/4/46/Sun_icon_with_rays.svg') no-repeat center center;
+  background-size: contain;
+  transition: transform 0.3s;
+}
+
+.dark-mode .theme-toggle-btn .icon {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Moon_and_stars_icon.svg') no-repeat center center;
+  background-size: contain;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  .card {
+    padding: 15px;
+  }
+  #trainer-name-1, #trainer-name-2, #calculate-btn {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+}

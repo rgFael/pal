@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valor del Entrenador</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar modo oscuro">
+      <span class="icon"></span>
+    </button>
+
+    <div class="header-container">
+      <h1>Valor del Entrenador</h1>
+      <p>Calcula el valor acumulado de un entrenador temporada por temporada.</p>
+    </div>
+
+    <div class="card">
+      <div class="input-section">
+        <label for="json-input">Pega aquí tu JSON de temporadas</label>
+        <textarea id="json-input" placeholder="[ { 'TEMPORADA': 'T1', 'TORNEO': 'Pepe', ... }, ... ]"></textarea>
+      </div>
+
+      <div class="search-container">
+        <input type="text" id="trainer-name-1" placeholder="Nombre del Entrenador">
+        <button id="calculate-btn">
+          <span id="button-text">Calcular</span>
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </button>
+      </div>
+    </div>
+    
+    <div id="message" class="message-box"></div>
+    
+    <div id="results">
+      <div id="results-table-container"></div>
+      <div id="total-points" class="total-points-summary"></div>
+      <div id="records-container"></div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
